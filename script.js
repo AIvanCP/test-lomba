@@ -179,28 +179,40 @@ function downloadResource(type) {
 }
 
 // ========== SCROLL ANIMATIONS ==========
-// Intersection Observer for fade-in animations
+// Intersection Observer for fade-in animations with stagger
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }, index * 100); // Stagger animation
         }
     });
 }, observerOptions);
 
 // Add animation styles to elements
 const animateElements = document.querySelectorAll('.card-hover, .faq-item');
-animateElements.forEach(el => {
+animateElements.forEach((el, index) => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
     observer.observe(el);
+});
+
+// ========== PARALLAX SCROLL EFFECT ==========
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.hero-pattern');
+    
+    parallaxElements.forEach(el => {
+        el.style.transform = `translateY(${scrolled * 0.3}px)`;
+    });
 });
 
 // ========== KEYBOARD ACCESSIBILITY ==========
@@ -237,6 +249,43 @@ function highlightNavigation() {
 }
 
 window.addEventListener('scroll', highlightNavigation);
+
+// ========== NUMBER COUNTER ANIMATION ==========
+function animateCounter(element, target, suffix = '') {
+    let current = 0;
+    const increment = target / 50;
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target + suffix;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current) + suffix;
+        }
+    }, 30);
+}
+
+// Trigger counter animation when stats come into view
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+            entry.target.dataset.animated = 'true';
+            const statElements = entry.target.querySelectorAll('.stat-number');
+            
+            statElements.forEach((el, index) => {
+                const text = el.textContent;
+                if (index === 0) animateCounter(el, 3);
+                else if (index === 1) el.textContent = '50JT+';
+                else if (index === 2) animateCounter(el, 500, '+');
+            });
+        }
+    });
+}, { threshold: 0.5 });
+
+const statsSection = document.querySelector('.grid.grid-cols-3');
+if (statsSection) {
+    statsObserver.observe(statsSection);
+}
 
 // ========== INITIALIZE ==========
 console.log('🔬 Lomba Sains Semarang 2026 - Website Loaded Successfully!');
