@@ -275,8 +275,8 @@ const statsObserver = new IntersectionObserver((entries) => {
             statElements.forEach((el, index) => {
                 const text = el.textContent;
                 if (index === 0) animateCounter(el, 3);
-                else if (index === 1) el.textContent = '50JT+';
-                else if (index === 2) animateCounter(el, 500, '+');
+                else if (index === 1) el.textContent = '19JT';
+                else if (index === 2) animateCounter(el, 19, '+');
             });
         }
     });
