@@ -1,0 +1,25 @@
+{
+  "name": "lombain",
+  "version": "1.0.0",
+  "description": "Platform Ujian Online untuk SD & SMP - Belajar jadi lebih seru!",
+  "main": "index.html",
+  "scripts": {
+    "dev": "echo \"Open index.html in browser\" && start index.html",
+    "preview": "start index.html"
+  },
+  "keywords": [
+    "education",
+    "exam",
+    "online-learning",
+    "student",
+    "tailwindcss"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
+  }
+}
+

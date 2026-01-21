@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lomba Sains Semarang 2026 - Jelajahi Dunia Ilmu Pengetahuan</title>
+    <meta name="description" content="Kompetisi sains untuk siswa SD, SMP, dan SMA se-Semarang. Daftar sekarang dan tunjukkan kemampuan ilmu pengetahuanmu!">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            green: '#10b981',
+                            yellow: '#fbbf24',
+                            purple: '#8b5cf6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Minimal custom styles */
+        .hero-pattern {
+            background-color: #f0f9ff;
+            background-image: 
+                radial-gradient(at 40% 20%, rgb(219, 234, 254) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgb(191, 219, 254) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgb(239, 246, 255) 0px, transparent 50%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        
+        /* FAQ Accordion */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .faq-answer.active {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-icon.active {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-white">
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100 shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">🔬</span>
+                        </div>
+                        <span class="font-display font-bold text-xl text-gray-900">Lomba Sains 2026</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#tentang" class="text-gray-700 hover:text-primary-600 transition-colors font-medium">Tentang</a>
+                    <a href="#kategori" class="text-gray-700 hover:text-primary-600 transition-colors font-medium">Kategori</a>
+                    <a href="#jadwal" class="text-gray-700 hover:text-primary-600 transition-colors font-medium">Jadwal</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary-600 transition-colors font-medium">FAQ</a>
+                    <a href="#daftar" class="bg-primary-600 text-white px-5 py-2.5 rounded-lg hover:bg-primary-700 transition-colors font-semibold shadow-sm">
+                        Daftar Sekarang
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" title="Toggle menu" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path class="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path class="close-icon hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#tentang" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors font-medium">Tentang</a>
+                <a href="#kategori" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors font-medium">Kategori</a>
+                <a href="#jadwal" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors font-medium">Jadwal</a>
+                <a href="#faq" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors font-medium">FAQ</a>
+                <a href="#daftar" class="block px-4 py-2.5 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-semibold text-center">
+                    Daftar Sekarang
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero-pattern pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="text-center md:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full border border-primary-200 mb-6">
+                        <span class="w-2 h-2 bg-accent-green rounded-full animate-pulse"></span>
+                        <span class="text-sm font-semibold text-gray-700">Pendaftaran Dibuka!</span>
+                    </div>
+                    
+                    <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6 leading-tight">
+                        Lomba Sains<br/>
+                        <span class="text-primary-600">Semarang 2026</span>
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+                        Jelajahi dunia ilmu pengetahuan bersama ribuan siswa se-Semarang! Tunjukkan kemampuan terbaikmu di bidang <span class="font-semibold text-gray-900">Matematika, Fisika, Kimia, dan Biologi</span>.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="#daftar" class="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105">
+                            Daftar Sekarang
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                        </a>
+                        <a href="#tentang" class="inline-flex items-center justify-center px-8 py-4 bg-white border-2 border-gray-300 text-gray-700 rounded-xl hover:border-primary-500 hover:text-primary-600 transition-all font-bold text-lg">
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-gray-200">
+                        <div>
+                            <div class="font-display font-bold text-3xl text-primary-600">3</div>
+                            <div class="text-sm text-gray-600 mt-1">Kategori</div>
+                        </div>
+                        <div>
+                            <div class="font-display font-bold text-3xl text-primary-600">50JT+</div>
+                            <div class="text-sm text-gray-600 mt-1">Total Hadiah</div>
+                        </div>
+                        <div>
+                            <div class="font-display font-bold text-3xl text-primary-600">500+</div>
+                            <div class="text-sm text-gray-600 mt-1">Peserta</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Image/Illustration -->
+                <div class="hidden md:block">
+                    <div class="relative">
+                        <div class="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
+                            <div class="aspect-square bg-gradient-to-br from-primary-100 via-primary-50 to-white rounded-2xl flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="text-8xl mb-4">🏆</div>
+                                    <div class="font-display font-bold text-2xl text-gray-900 mb-2">Raih Juara!</div>
+                                    <div class="text-gray-600">Hadiah jutaan rupiah menanti</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-accent-yellow rounded-2xl shadow-xl flex items-center justify-center text-4xl animate-bounce">
+                            ⭐
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 w-20 h-20 bg-accent-green rounded-2xl shadow-xl flex items-center justify-center text-3xl">
+                            🎯
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EVENT HIGHLIGHTS / INFO ========== -->
+    <section id="tentang" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-display font-bold text-3xl md:text-4xl text-gray-900 mb-4">
+                    Tentang Lomba Sains 2026
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Kompetisi sains terbesar untuk pelajar SD, SMP, dan SMA se-Semarang
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Info Card 1: Date -->
+                <div class="bg-gradient-to-br from-primary-50 to-white border border-primary-100 rounded-2xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-primary-600 rounded-xl flex items-center justify-center text-2xl mb-4">
+                        📅
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-2">Tanggal Pelaksanaan</h3>
+                    <p class="text-gray-600">15 Maret 2026</p>
+                    <p class="text-sm text-gray-500 mt-1">Pukul 08.00 - 14.00 WIB</p>
+                </div>
+                
+                <!-- Info Card 2: Location -->
+                <div class="bg-gradient-to-br from-accent-green/10 to-white border border-accent-green/20 rounded-2xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-accent-green rounded-xl flex items-center justify-center text-2xl mb-4">
+                        📍
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-2">Lokasi</h3>
+                    <p class="text-gray-600">Auditorium UNDIP</p>
+                    <p class="text-sm text-gray-500 mt-1">Jl. Prof. Soedarto, Tembalang</p>
+                </div>
+                
+                <!-- Info Card 3: Categories -->
+                <div class="bg-gradient-to-br from-accent-yellow/10 to-white border border-accent-yellow/20 rounded-2xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-accent-yellow rounded-xl flex items-center justify-center text-2xl mb-4">
+                        🎓
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-2">Kategori</h3>
+                    <p class="text-gray-600">SD, SMP, SMA</p>
+                    <p class="text-sm text-gray-500 mt-1">3 kategori terpisah</p>
+                </div>
+                
+                <!-- Info Card 4: Registration -->
+                <div class="bg-gradient-to-br from-purple-50 to-white border border-purple-100 rounded-2xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-accent-purple rounded-xl flex items-center justify-center text-2xl mb-4">
+                        ✍️
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-900 mb-2">Pendaftaran</h3>
+                    <p class="text-gray-600">Batas: 28 Februari</p>
+                    <p class="text-sm text-gray-500 mt-1">Gratis & Online</p>
+                </div>
+            </div>
+            
+            <!-- About Description -->
+            <div class="bg-gray-50 rounded-2xl p-8 md:p-12">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="font-display font-bold text-2xl text-gray-900 mb-4">
+                            Mengapa Ikut Lomba Sains?
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-accent-green mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Asah kemampuan logika dan berpikir kritis</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-accent-green mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Bertemu dengan peserta berbakat dari seluruh Semarang</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-accent-green mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Raih sertifikat dan hadiah jutaan rupiah</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-accent-green mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-gray-700">Pengalaman lomba yang menyenangkan dan edukatif</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                        <div class="text-center mb-4">
+                            <div class="text-6xl mb-3">🔬</div>
+                            <h4 class="font-bold text-xl text-gray-900">Bidang Lomba</h4>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-primary-50 rounded-lg p-3 text-center">
+                                <div class="text-2xl mb-1">📐</div>
+                                <div class="text-sm font-semibold text-gray-900">Matematika</div>
+                            </div>
+                            <div class="bg-primary-50 rounded-lg p-3 text-center">
+                                <div class="text-2xl mb-1">⚡</div>
+                                <div class="text-sm font-semibold text-gray-900">Fisika</div>
+                            </div>
+                            <div class="bg-primary-50 rounded-lg p-3 text-center">
+                                <div class="text-2xl mb-1">🧪</div>
+                                <div class="text-sm font-semibold text-gray-900">Kimia</div>
+                            </div>
+                            <div class="bg-primary-50 rounded-lg p-3 text-center">
+                                <div class="text-2xl mb-1">🌿</div>
+                                <div class="text-sm font-semibold text-gray-900">Biologi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURE BLOCKS ========== -->
+    <section id="kategori" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-display font-bold text-3xl md:text-4xl text-gray-900 mb-4">
+                    Informasi Penting
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Hal-hal yang perlu kamu ketahui sebelum mendaftar
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature 1: Kategori Peserta -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover">
+                    <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center text-2xl mb-6 shadow-lg">
+                        👥
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-3">Kategori Peserta</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Lomba dibagi menjadi 3 kategori: SD (kelas 4-6), SMP (kelas 7-9), dan SMA (kelas 10-12).
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-gray-700">
+                            <span class="w-1.5 h-1.5 bg-primary-600 rounded-full mr-2"></span>
+                            SD: Kelas 4, 5, 6
+                        </li>
+                        <li class="flex items-center text-sm text-gray-700">
+                            <span class="w-1.5 h-1.5 bg-primary-600 rounded-full mr-2"></span>
+                            SMP: Kelas 7, 8, 9
+                        </li>
+                        <li class="flex items-center text-sm text-gray-700">
+                            <span class="w-1.5 h-1.5 bg-primary-600 rounded-full mr-2"></span>
+                            SMA: Kelas 10, 11, 12
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 2: Jadwal Kompetisi -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover" id="jadwal">
+                    <div class="w-14 h-14 bg-gradient-to-br from-accent-green to-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-6 shadow-lg">
+                        ⏰
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-3">Jadwal Kompetisi</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Timeline lengkap dari pendaftaran hingga pengumuman pemenang.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start text-sm text-gray-700">
+                            <span class="w-1.5 h-1.5 bg-accent-green rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
+                            <span><strong>1-28 Feb:</strong> Pendaftaran</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-700">
+                            <span class="w-1.5 h-1.5 bg-accent-green rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
+                            <span><strong>15 Mar:</strong> Hari kompetisi</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-700">
+                            <span class="w-1.5 h-1.5 bg-accent-green rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
+                            <span><strong>22 Mar:</strong> Pengumuman</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 3: Total Hadiah -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover">
+                    <div class="w-14 h-14 bg-gradient-to-br from-accent-yellow to-orange-500 rounded-xl flex items-center justify-center text-2xl mb-6 shadow-lg">
+                        💰
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-3">Total Hadiah</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Hadiah senilai lebih dari <span class="font-bold text-gray-900">50 juta rupiah</span> untuk para juara.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-gray-700">
+                            <span class="text-accent-yellow mr-2">🥇</span>
+                            Juara 1: Rp 5.000.000
+                        </li>
+                        <li class="flex items-center text-sm text-gray-700">
+                            <span class="text-gray-400 mr-2">🥈</span>
+                            Juara 2: Rp 3.000.000
+                        </li>
+                        <li class="flex items-center text-sm text-gray-700">
+                            <span class="text-orange-600 mr-2">🥉</span>
+                            Juara 3: Rp 2.000.000
+                        </li>
+                    </ul>
+                    <p class="text-xs text-gray-500 mt-3">*Per kategori & bidang lomba</p>
+                </div>
+                
+                <!-- Feature 4: Poster Lomba -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover">
+                    <div class="w-14 h-14 bg-gradient-to-br from-accent-purple to-purple-700 rounded-xl flex items-center justify-center text-2xl mb-6 shadow-lg">
+                        📄
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-3">Poster Lomba</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Download poster resmi dan bagikan ke teman-temanmu!
+                    </p>
+                    <a href="#download" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold text-sm group">
+                        Download Poster
+                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CALL TO ACTION SECTION ========== -->
+    <section id="daftar" class="py-16 md:py-24 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur px-4 py-2 rounded-full mb-6">
+                    <span class="w-2 h-2 bg-accent-yellow rounded-full animate-pulse"></span>
+                    <span class="text-sm font-semibold">Pendaftaran Terbatas!</span>
+                </div>
+                
+                <h2 class="font-display font-bold text-3xl md:text-5xl mb-6">
+                    Siap Menjadi Juara?
+                </h2>
+                
+                <p class="text-lg md:text-xl text-primary-100 mb-8 leading-relaxed max-w-2xl mx-auto">
+                    Daftar sekarang dan buktikan bahwa kamu adalah siswa berprestasi! Jangan lewatkan kesempatan emas ini untuk bersaing dengan siswa terbaik se-Semarang.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <a href="https://forms.google.com/lombasains2026" class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 rounded-xl hover:bg-gray-50 transition-all font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105">
+                        Daftar Sekarang
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </a>
+                    <button onclick="shareEvent()" class="inline-flex items-center justify-center px-8 py-4 bg-primary-500 border-2 border-white/30 text-white rounded-xl hover:bg-primary-400 transition-all font-bold text-lg">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                        </svg>
+                        Bagikan ke Teman
+                    </button>
+                </div>
+                
+                <!-- Trust Indicators -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/20">
+                    <div>
+                        <div class="font-display font-bold text-3xl">500+</div>
+                        <div class="text-sm text-primary-100 mt-1">Peserta Terdaftar</div>
+                    </div>
+                    <div>
+                        <div class="font-display font-bold text-3xl">50JT+</div>
+                        <div class="text-sm text-primary-100 mt-1">Total Hadiah</div>
+                    </div>
+                    <div>
+                        <div class="font-display font-bold text-3xl">12</div>
+                        <div class="text-sm text-primary-100 mt-1">Bidang Lomba</div>
+                    </div>
+                    <div>
+                        <div class="font-display font-bold text-3xl">100%</div>
+                        <div class="text-sm text-primary-100 mt-1">Gratis</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DOWNLOAD / RESOURCES ========== -->
+    <section id="download" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-display font-bold text-3xl md:text-4xl text-gray-900 mb-4">
+                    Download & Resources
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Unduh materi dan panduan yang kamu butuhkan
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Poster Card -->
+                <div class="bg-gradient-to-br from-primary-50 to-white border-2 border-primary-200 rounded-2xl p-8 text-center">
+                    <div class="w-20 h-20 bg-primary-600 rounded-2xl flex items-center justify-center text-4xl mx-auto mb-6 shadow-lg">
+                        🎨
+                    </div>
+                    <h3 class="font-bold text-2xl text-gray-900 mb-3">Poster Lomba</h3>
+                    <p class="text-gray-600 mb-6">
+                        Download poster resmi Lomba Sains 2026 dalam format PDF berkualitas tinggi
+                    </p>
+                    <button onclick="downloadPoster()" class="w-full bg-primary-600 text-white px-6 py-4 rounded-xl hover:bg-primary-700 transition-all font-bold text-lg shadow-lg hover:shadow-xl flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                        Download Poster (PDF)
+                    </button>
+                    <p class="text-xs text-gray-500 mt-3">Format: PDF | Ukuran: 2.4 MB</p>
+                </div>
+                
+                <!-- Guidebook Card -->
+                <div class="bg-gradient-to-br from-accent-green/10 to-white border-2 border-accent-green/30 rounded-2xl p-8 text-center">
+                    <div class="w-20 h-20 bg-accent-green rounded-2xl flex items-center justify-center text-4xl mx-auto mb-6 shadow-lg">
+                        📚
+                    </div>
+                    <h3 class="font-bold text-2xl text-gray-900 mb-3">Buku Panduan</h3>
+                    <p class="text-gray-600 mb-6">
+                        Panduan lengkap tentang peraturan, sistem penilaian, dan tips menghadapi lomba
+                    </p>
+                    <button onclick="openGuidebook()" class="w-full bg-accent-green text-white px-6 py-4 rounded-xl hover:bg-emerald-600 transition-all font-bold text-lg shadow-lg hover:shadow-xl flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        Buka Buku Panduan
+                    </button>
+                    <p class="text-xs text-gray-500 mt-3">Format: PDF | Ukuran: 1.8 MB</p>
+                </div>
+            </div>
+            
+            <!-- Additional Resources -->
+            <div class="mt-12 bg-gray-50 rounded-2xl p-8 max-w-4xl mx-auto">
+                <h3 class="font-bold text-xl text-gray-900 mb-6 text-center">Materi Tambahan</h3>
+                <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    <button onclick="downloadResource('contoh-soal')" class="flex flex-col items-center p-4 bg-white rounded-xl hover:shadow-md transition-all border border-gray-200 group">
+                        <div class="text-3xl mb-2">📝</div>
+                        <span class="text-sm font-semibold text-gray-900 group-hover:text-primary-600">Contoh Soal</span>
+                    </button>
+                    <button onclick="downloadResource('jadwal')" class="flex flex-col items-center p-4 bg-white rounded-xl hover:shadow-md transition-all border border-gray-200 group">
+                        <div class="text-3xl mb-2">📅</div>
+                        <span class="text-sm font-semibold text-gray-900 group-hover:text-primary-600">Jadwal Lengkap</span>
+                    </button>
+                    <button onclick="downloadResource('denah')" class="flex flex-col items-center p-4 bg-white rounded-xl hover:shadow-md transition-all border border-gray-200 group">
+                        <div class="text-3xl mb-2">🗺️</div>
+                        <span class="text-sm font-semibold text-gray-900 group-hover:text-primary-600">Denah Lokasi</span>
+                    </button>
+                    <button onclick="downloadResource('faq-pdf')" class="flex flex-col items-center p-4 bg-white rounded-xl hover:shadow-md transition-all border border-gray-200 group">
+                        <div class="text-3xl mb-2">❓</div>
+                        <span class="text-sm font-semibold text-gray-900 group-hover:text-primary-600">FAQ (PDF)</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAQ SECTION ========== -->
+    <section id="faq" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-display font-bold text-3xl md:text-4xl text-gray-900 mb-4">
+                    Pertanyaan yang Sering Diajukan
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Temukan jawaban untuk pertanyaan umum tentang Lomba Sains 2026
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-lg text-gray-900">Apakah ada biaya pendaftaran?</span>
+                        <svg class="faq-icon w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-5">
+                        <p class="text-gray-600 leading-relaxed">
+                            <strong>Tidak ada biaya pendaftaran sama sekali.</strong> Lomba Sains 2026 sepenuhnya gratis untuk semua peserta. Kami berkomitmen memberikan kesempatan yang sama bagi seluruh pelajar di Semarang untuk berkompetisi dan mengembangkan kemampuan sains mereka.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-lg text-gray-900">Bagaimana cara mendaftar?</span>
+                        <svg class="faq-icon w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-5">
+                        <p class="text-gray-600 leading-relaxed mb-3">
+                            Pendaftaran dilakukan secara online melalui formulir yang tersedia di website ini. Berikut langkah-langkahnya:
+                        </p>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                            <li>Klik tombol "Daftar Sekarang" di halaman ini</li>
+                            <li>Isi formulir pendaftaran dengan data lengkap dan benar</li>
+                            <li>Upload dokumen yang diperlukan (foto, kartu pelajar)</li>
+                            <li>Submit formulir dan tunggu email konfirmasi</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-lg text-gray-900">Apakah bisa mendaftar lebih dari satu bidang lomba?</span>
+                        <svg class="faq-icon w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-5">
+                        <p class="text-gray-600 leading-relaxed">
+                            <strong>Ya, boleh!</strong> Setiap peserta diperbolehkan mengikuti maksimal 2 (dua) bidang lomba, asalkan jadwal pelaksanaannya tidak bertabrakan. Misalnya, kamu bisa ikut Matematika dan Fisika, atau Kimia dan Biologi. Pastikan untuk mengecek jadwal di buku panduan.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-lg text-gray-900">Apa saja yang harus dibawa saat hari kompetisi?</span>
+                        <svg class="faq-icon w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-5">
+                        <p class="text-gray-600 leading-relaxed mb-3">
+                            Berikut adalah daftar barang yang wajib dan dianjurkan untuk dibawa:
+                        </p>
+                        <div class="space-y-3">
+                            <div>
+                                <p class="font-semibold text-gray-900 mb-1">Wajib dibawa:</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                    <li>Kartu peserta (dikirim via email setelah pendaftaran)</li>
+                                    <li>Kartu pelajar atau identitas resmi lainnya</li>
+                                    <li>Alat tulis (pensil 2B, penghapus, penggaris)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900 mb-1">Dianjurkan:</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                    <li>Kalkulator (non-programmable)</li>
+                                    <li>Bekal makanan dan minuman</li>
+                                    <li>Masker cadangan</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-lg text-gray-900">Kapan pengumuman pemenang?</span>
+                        <svg class="faq-icon w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-5">
+                        <p class="text-gray-600 leading-relaxed">
+                            Pengumuman pemenang akan dilaksanakan pada <strong>22 Maret 2026</strong> pukul 14.00 WIB melalui website resmi dan media sosial kami. Semua peserta juga akan menerima notifikasi via email. Upacara penyerahan hadiah dan sertifikat akan dilaksanakan pada tanggal yang sama, dimulai pukul 15.00 WIB di Auditorium UNDIP.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 6 -->
+                <div class="faq-item bg-white rounded-xl border border-gray-200 overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-lg text-gray-900">Apakah ada sertifikat untuk semua peserta?</span>
+                        <svg class="faq-icon w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-5">
+                        <p class="text-gray-600 leading-relaxed">
+                            <strong>Ya, tentu saja!</strong> Semua peserta yang mengikuti lomba hingga selesai akan mendapatkan e-sertifikat sebagai bukti partisipasi. E-sertifikat akan dikirimkan via email maksimal 7 hari setelah pengumuman pemenang. Sertifikat fisik hanya diberikan kepada para pemenang (juara 1, 2, dan 3) saat upacara penyerahan hadiah.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Still Have Questions -->
+            <div class="mt-12 text-center">
+                <p class="text-gray-600 mb-4">Masih punya pertanyaan lain?</p>
+                <a href="mailto:info@lombasains2026.com" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+                    Hubungi Kami
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">🔬</span>
+                        </div>
+                        <span class="font-display font-bold text-xl text-white">Lomba Sains 2026</span>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Kompetisi sains terbesar untuk pelajar SD, SMP, dan SMA se-Semarang. Wujudkan potensi terbaikmu!
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-bold text-white mb-4">Link Cepat</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#tentang" class="text-sm hover:text-white transition-colors">Tentang Lomba</a></li>
+                        <li><a href="#kategori" class="text-sm hover:text-white transition-colors">Kategori</a></li>
+                        <li><a href="#jadwal" class="text-sm hover:text-white transition-colors">Jadwal</a></li>
+                        <li><a href="#download" class="text-sm hover:text-white transition-colors">Download</a></li>
+                        <li><a href="#faq" class="text-sm hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h3 class="font-bold text-white mb-4">Bantuan</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm hover:text-white transition-colors">Hubungi Kami</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition-colors">Pusat Bantuan</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition-colors">Syarat & Ketentuan</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition-colors">Kebijakan Privasi</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="font-bold text-white mb-4">Kontak</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start text-sm">
+                            <svg class="w-5 h-5 mr-2 flex-shrink-0 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>info@lombasains2026.com</span>
+                        </li>
+                        <li class="flex items-start text-sm">
+                            <svg class="w-5 h-5 mr-2 flex-shrink-0 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span>+62 812-3456-7890</span>
+                        </li>
+                        <li class="flex items-start text-sm">
+                            <svg class="w-5 h-5 mr-2 flex-shrink-0 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>Auditorium UNDIP, Tembalang, Semarang</span>
+                        </li>
+                    </ul>
+                    
+                    <!-- Social Media -->
+                    <div class="flex items-center space-x-3 mt-6">
+                        <a href="#" title="Instagram" aria-label="Follow us on Instagram" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" title="Facebook" aria-label="Follow us on Facebook" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" title="Twitter" aria-label="Follow us on Twitter" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" title="YouTube" aria-label="Follow us on YouTube" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between">
+                <p class="text-sm text-gray-400 mb-4 md:mb-0">
+                    &copy; 2026 Lomba Sains Semarang. All rights reserved.
+                </p>
+                <div class="flex items-center space-x-6 text-sm text-gray-400">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-primary-600 text-white rounded-full shadow-lg hover:bg-primary-700 transition-all opacity-0 invisible hover:scale-110" title="Scroll to top" aria-label="Scroll to top">
+        <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
